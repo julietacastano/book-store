@@ -1,0 +1,26 @@
+.logo{
+    height:80px;
+    margin: 5px 25px;
+}
+.nav{
+    height: 80px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+}
+
+.btn{
+    margin: 10px;
+}
+
+.btn-carrito{
+    margin: 0px 50px;
+}
+
+.carrito{
+    height: 30px;
+}
