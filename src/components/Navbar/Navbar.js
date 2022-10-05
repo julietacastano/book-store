@@ -8,9 +8,10 @@ const Navbar = () => {
         <nav className="nav">
             <img src= {logo} alt="Logo" className="logo" />
             <div>
-                <button className="btn btn-light">On the go</button>
-                <button className="btn btn-light">Decoracion</button>
-                <button className="btn btn-light">Cuidado personal</button>
+                <button className="btn btn-light">Fiction</button>
+                <button className="btn btn-light">Romance</button>
+                <button className="btn btn-light">Thriller</button>
+                <button className="btn btn-light">Non-Fiction</button>
             </div>
             <CartWidget />
         </nav>
