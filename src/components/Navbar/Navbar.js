@@ -3,6 +3,7 @@ import logo from './assets/logo.png'
 import '../CartWidget/CartWidget'
 import CartWidget from '../CartWidget/CartWidget';
 
+
 const Navbar = () => {
     return(
         <nav className="nav">

@@ -1,0 +1,54 @@
+.cardDetail{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.cardDetailLeft{
+    display: flex;
+    flex-direction: column;
+}
+.cardDetailLeft img{
+    width: 150px;
+    margin: 20px;
+}
+.btnDetail{
+    justify-self: center;
+    align-self: center;
+    width: 150px;
+    margin: 0px 0px 20px 0px;
+}
+
+.cardDetailRight{
+    width: 300px;
+    margin: 20px;
+    text-align: left;
+}
+.cardDetailRight h3{
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 1px;
+}
+.cardDetailRight h5{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+
+}
+.descrption{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.contador{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+}
+.contador h5{
+    font-family: 'Montserrat', sans-serif;
+    padding: 0px 50px 0px 50px;
+
+}
