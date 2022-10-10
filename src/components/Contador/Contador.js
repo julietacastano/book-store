@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { getProductById } from '../../asyncMock';
+import { useParams } from 'react-router-dom';
 
 const Contador = () => {
     const [count, setCount] = useState(0);
     const [stock, setStock] = useState(0)
+
+    const {productId} = useParams();
     
-    getProductById('4').then((resp) =>{
+    getProductById(productId).then((resp) =>{
         setStock(resp.stock);    
     })
     

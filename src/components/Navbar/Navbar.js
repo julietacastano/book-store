@@ -2,17 +2,18 @@ import './Navbar.css';
 import logo from './assets/logo.png'
 import '../CartWidget/CartWidget'
 import CartWidget from '../CartWidget/CartWidget';
+import { NavLink } from 'react-router-dom';
 
 
 const Navbar = () => {
     return(
         <nav className="nav">
-            <img src= {logo} alt="Logo" className="logo" />
+            <NavLink to={'/'}><img src= {logo} alt="Logo" className="logo" /></NavLink>
             <div>
-                <button className="btn btn-light">Fiction</button>
-                <button className="btn btn-light">Romance</button>
-                <button className="btn btn-light">Thriller</button>
-                <button className="btn btn-light">Non-Fiction</button>
+                <NavLink to={'/category/Fiction'} className= {({isActive}) => isActive ? 'btn btn-secondary' : 'btn btn-light'}>Fiction</NavLink>
+                <NavLink to={'/category/Romance'} className={({isActive}) => isActive ? 'btn btn-secondary' : 'btn btn-light'}>Romance</NavLink>
+                <NavLink to={'/category/Thriller'} className={({isActive}) => isActive ? 'btn btn-secondary' : 'btn btn-light'}>Thriller</NavLink>
+                <NavLink to={'/category/Non-Fiction'} className={({isActive}) => isActive ? 'btn btn-secondary' : 'btn btn-light'}>Non-Fiction</NavLink>
             </div>
             <CartWidget />
         </nav>

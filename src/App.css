@@ -1,3 +1,9 @@
 .App {
   text-align: center;
 }
+
+.error{
+  font-family: 'Bebas Neue', cursive;
+  letter-spacing: 1px;
+  margin: 50px;
+}

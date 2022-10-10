@@ -1,20 +1,27 @@
 import './ItemListContainer.css'
 import {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import { getProducts } from "../../asyncMock";
+import { getProductByCategory } from '../../asyncMock';
 import ItemList from '../ItemList/ItemList';
 
 const ItemListContainer = () =>{
     const [products,setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const {categoryId} = useParams();
+
     useEffect(() =>{
-        console.log(getProducts())
-        getProducts().then((resp) => {
+        setLoading(true)
+        
+        const asyncFunction = categoryId ? getProductByCategory : getProducts;
+
+        asyncFunction(categoryId).then((resp) => {
             setProducts(resp);
         }).finally(()=>{
             setLoading(false)
         })
-    },[])
+    },[categoryId])
 
     if (loading === true){
         return <div className="spinner-border m-5"></div>
