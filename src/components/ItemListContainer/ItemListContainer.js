@@ -10,9 +10,9 @@ const ItemListContainer = () =>{
     const [loading, setLoading] = useState(true);
 
     const {categoryId} = useParams();
-
+    
     useEffect(() =>{
-        setLoading(true)
+        setLoading(true);
         
         const asyncFunction = categoryId ? getProductByCategory : getProducts;
 
@@ -23,13 +23,14 @@ const ItemListContainer = () =>{
         })
     },[categoryId])
 
-    if (loading === true){
+    if (loading){
         return <div className="spinner-border m-5"></div>
     }
 
+
     return (
-        <div>
-            <h5 className='tituloProd'>LISTADO DE PRODUCTOS</h5>
+        <div>   
+            <h5 className='tituloProd'>ALL PRODUCTS</h5>
             <ItemList array={products}/>
         </div>
     )

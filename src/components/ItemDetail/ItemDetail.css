@@ -1,54 +1,73 @@
 .cardDetail{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin: 20px;
+}
+
+
+.cardDetailInfo{
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
 }
-
-.cardDetailLeft{
-    display: flex;
-    flex-direction: column;
-}
-.cardDetailLeft img{
-    width: 150px;
+.cardDetailImg img{
+    width: 200px;
     margin: 20px;
 }
-.btnDetail{
-    justify-self: center;
-    align-self: center;
-    width: 150px;
-    margin: 0px 0px 20px 0px;
-}
-
-.cardDetailRight{
+.cardDetailText{
     width: 300px;
     margin: 20px;
+    font-family: 'Roboto', sans-serif;
     text-align: left;
 }
-.cardDetailRight h3{
-    font-family: 'Bebas Neue', cursive;
-    letter-spacing: 1px;
-}
-.cardDetailRight h5{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bolder;
 
-}
-.descrption{
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    font-weight: bold;
+
+.cardDescrip{
+    font-family: 'PT Sans Caption', sans-serif;
+    font-size: 12px;
+    text-align: left;
+    margin: 10px 100px;
+    padding: 20px;
+    background-color: whitesmoke;
 }
 
 
-.contador{
+.tituloContador{
+    margin-top: 70px;
+    margin-bottom: 0px;
+}
+.contadorQuantity{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-items: center;
+    margin: 5px;
 }
-.contador h5{
-    font-family: 'Montserrat', sans-serif;
-    padding: 0px 50px 0px 50px;
 
+.contador h5{
+    font-family: 'PT Sans Caption', sans-serif;
+    padding: 10px 10px 0px 10px;
+
+}
+
+
+.btnDetail{
+    justify-self: center;
+    align-self: center;
+    width: 200px;
+    margin-top: 5px;
+}
+
+.agregado{
+    margin-top: 50px;
+}
+.btnSeguir{
+    width: fit-content;
+    margin: 0px 15px 0px 0px;
+}
+.btnCarrito{
+    width: fit-content;
 }

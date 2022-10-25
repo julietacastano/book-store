@@ -1,9 +1,10 @@
 .tituloProd{
     margin: 50px 20px 0px 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bolder;
-    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
 }
+
+
 
 .cardsList{
     display: flex;
@@ -19,13 +20,18 @@
     margin: 25px;
     padding: 10px;
 }
-
-.card img{
+.cardImg{
     width:100px;
     align-self: center;
     margin: 5px;
-    
 }
+.cardName{
+    color: black;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
 
 .btn-outline-primary{
     width: 150px;
