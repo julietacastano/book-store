@@ -9,7 +9,10 @@ const Cart = () =>{
 
     console.log(cart)
 
-    return(
+    if(totalQuantity === 0){
+        return <p className='emptyCart'>Your cart is empty</p>
+    } else{
+        return(
         <div className="cart">
             <h4>Your Cart</h4>
             <div className='cartItemList'>
@@ -36,7 +39,7 @@ const Cart = () =>{
             </div>
             
         </div>
-    )
+    )}
 }
 
 export default Cart; 

@@ -8,8 +8,9 @@ const Notification = ({severity, message}) =>{
         height:'auto',
         width:'auto',
         borderRadius:'5px',
-        backgroundColor:severity === 'success' ? '#00b33c' : '#e60000',
-        padding:'10px 15px'
+        backgroundColor:severity === 'success' ? ' #009933' : '#e60000',
+        padding:'10px 15px',
+        color: 'white'
     }
 
     if(message === '')return
