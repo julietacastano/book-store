@@ -6,12 +6,18 @@ import { CartContext } from '../../context/CartContext';
 
 const ItemDetail = ({id, name, price, category, img, description, stock}) =>{
     const [button, setButton] = useState('carrito')
-    const {addItem} = useContext(CartContext)
+    const {addItem, getQuantityProd} = useContext(CartContext)
 
     const handleOnAdd= (quantity) =>{
         const productToAdd = {id,name,price,quantity};
         addItem(productToAdd);
         setButton('yaAgregue');
+    }
+
+    const prodQuantity = getQuantityProd(id)
+
+    const ItemCount = () =>{
+        return (stock !== 0 ? <Counter stock={stock} onAdd={handleOnAdd} inicial={prodQuantity} /> : <p>Item out of stock</p>)
     }
 
     const Agregado = () => {
@@ -23,7 +29,7 @@ const ItemDetail = ({id, name, price, category, img, description, stock}) =>{
             
         )
     }
-    const ButtonSwitch = button === 'carrito' ? Counter  : Agregado; 
+    const ButtonSwitch = button === 'carrito' ? ItemCount  : Agregado; 
 
     return(
         <div className="cardDetail">
@@ -35,7 +41,7 @@ const ItemDetail = ({id, name, price, category, img, description, stock}) =>{
                     <h3 className='blockquote'>{name}</h3>
                     <p className='blockquote-footer'>{category}</p>
                     <h4>US$ {price}</h4>
-                    <ButtonSwitch stock={stock} onAdd={handleOnAdd}/>
+                    <ButtonSwitch/>
                 </div>
             </div>
             <div className='cardDescrip'>

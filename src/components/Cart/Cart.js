@@ -1,11 +1,11 @@
 import './Cart.css'
+import CartItem from '../CartItem/CartItem';
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import { Link } from 'react-router-dom';
 
 const Cart = () =>{
-    const {cart, getQuantity, getPrice, emptyCart, deleteProd} = useContext(CartContext)
-    let totalQuantity = getQuantity()
-    let totalPrice = getPrice()
+    const {cart, totalQuantity, totalPrice, emptyCart} = useContext(CartContext)
 
     console.log(cart)
 
@@ -22,20 +22,13 @@ const Cart = () =>{
                     <p>Quantity</p>
                     <p>Delete</p>
                 </div>
-                {cart.map(prod =>
-                    <div className='cartItem'>
-                        <p>{prod.name}</p>
-                        <p>U$S {prod.price}</p>
-                        <p>{prod.quantity}</p>
-                        <button className='btn btn-danger btn-sm' onClick={() => deleteProd(prod.id)}>Delete</button>
-                    </div>
-                    )}
+                {cart.map(prod => <CartItem key={prod.id} {...prod} />)}
                 <button className='btn btn-danger btn-sm btnEmpty' onClick={() => emptyCart()} >Empty cart</button>
             </div>
             <div className='totals'>
                 <p>Total quantity: {totalQuantity}</p>
                 <p>Total Price: U$S {totalPrice}</p>
-                <button className='btn btn-success btnCheck'>Go to checkout</button>
+                <Link to={'/checkout'} className='btn btn-success btnCheck'>Go to checkout</Link>
             </div>
             
         </div>

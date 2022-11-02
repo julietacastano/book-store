@@ -6,11 +6,10 @@ import { Link } from 'react-router-dom'
 
 
 const CartWidget = () =>{
-    const {getQuantity} = useContext(CartContext)
-    let quantity = getQuantity()
+    const {totalQuantity} = useContext(CartContext)
 
     return(
-        <Link to={'/cart'} className = "btn btn-light btn-carrito"><FontAwesomeIcon icon={faCartShopping}/> Items: {quantity}</Link>
+        <Link to={'/cart'} className = "btn btn-light btn-carrito"><FontAwesomeIcon icon={faCartShopping}/> Items: {totalQuantity}</Link>
     )
 }
 

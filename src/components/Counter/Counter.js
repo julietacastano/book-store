@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus} from '@fortawesome/free-solid-svg-icons'
 
-const Counter = ({stock, onAdd}) => {
-    const [quantity, setQuantity] = useState(1);
+const Counter = ({stock, onAdd, inicial = 1}) => {
+    const [quantity, setQuantity] = useState(inicial);
 
     const sumar = () =>{
         if (quantity < stock){
