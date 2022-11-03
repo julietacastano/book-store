@@ -21,14 +21,12 @@ export const CartProvider = ({children}) =>{
         if( isInCart(productToAdd.id)){
             const cartUpdate = cart.map(prod => {
                 if(prod.id === productToAdd.id){
-                    console.log(productToAdd.quantity)
                     return ({...productToAdd, quantity:productToAdd.quantity})
                 } else {return prod}
             })
             setCart(cartUpdate)
             setNotification('Quantity of item in cart changed ', 'error')
         }else{
-            console.log(productToAdd.quantity)
             setCart([...cart, productToAdd])
             setNotification('Item added to your cart', 'success')
         }

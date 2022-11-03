@@ -2,8 +2,7 @@ import {useState, useEffect, useContext} from 'react';
 import { NotificationContext } from '../../Notification/Notification';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../ItemDetail/ItemDetail';
-import { getDoc, doc } from 'firebase/firestore';
-import { db } from '../../services/firebase';
+import { getProduct } from '../../services/firestore/products';
 
 const ItemDetailContainer = () =>{
     const [product,setProduct] = useState([]);
@@ -14,15 +13,10 @@ const ItemDetailContainer = () =>{
     const {productId} = useParams();
 
     useEffect(() =>{
-        const docRef = doc(db,'products', productId)
-
-        getDoc(docRef).then((resp) => {
-            const data = resp.data()
-            const productAdapt = {id:resp.id, ...data}
-            setProduct(productAdapt);
+        getProduct(productId).then(prod=>{
+            setProduct(prod)
         }).catch(()=>{
-            console.log('error loading product')
-            setNotification('error loading product', 'error')
+            setNotification('error loading products', 'error')
         }).finally(()=>{
             setLoading(false)
         })

@@ -8,7 +8,7 @@ import { NotificationContext } from '../../Notification/Notification';
 import { useNavigate } from 'react-router-dom';
 
 const Checkout = () =>{
-    const {cart, totalPrice, emptyCart} = useContext(CartContext);
+    const {cart, totalPrice, emptyCart, deleteProd} = useContext(CartContext);
     const {setNotification} = useContext(NotificationContext);
     const [loading, setLoading] = useState(false);
 
@@ -33,7 +33,6 @@ const Checkout = () =>{
 
         try{
             const objOrder = {...data,Items:cart,TotalPrice:totalPrice}
-            console.log(objOrder)
 
             const batch = writeBatch(db)
 
@@ -72,22 +71,23 @@ const Checkout = () =>{
                 const orderRef = collection(db,'orders')
                 const orderAdded = await addDoc(orderRef, objOrder)
 
-                console.log(orderAdded)
-
                 emptyCart()
 
                 setTimeout(() =>{
                     navigate('/summary')
+                    
                 },3000)
 
                 setNotification(`Your order number is ${orderAdded.id}` , 'success')
 
             }else{
+                const idOutOfStock = outOfStock.find(prod=>prod.id)
+                const idFound = idOutOfStock.id
+                deleteProd(idFound)
                 setNotification('There are products out of stock','error')
             }
-
-        }catch (error){
-            console.log(error)
+        }catch{
+            setNotification('Error in creating order','error')
         } finally{setLoading(false)}
     }
     
@@ -99,16 +99,14 @@ const Checkout = () =>{
     return (
         <div className="checkout">
             <h4>Checkout</h4>
-            <div>
-                <p>Your Order</p>
+            <div className='text-start'>
+                <p><ins>Your Order</ins></p>
                     {cart.map(prod=>
                     <div key={prod.id}>
-                        <p>{prod.name}</p>
-                        <p>{prod.price}</p>
-                        <p> {prod.quantity} </p>
-                        <p>{totalPrice}</p>
+                        <p>{prod.name} - quantity: {prod.quantity}</p>
                     </div>
                     )} 
+                <p>Total price: U$S {totalPrice} </p>
             </div>
             <Form onChange={handleInputChange} purchase={createOrder}  />
         </div>

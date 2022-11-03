@@ -23,7 +23,6 @@ const Navbar = () => {
             })
             setCategory(categoriesAddapt)
         }).catch(()=>{
-            console.log('error loading categories')
             setNotification('error loading products', 'error')
         })
     },[])//eslint-disable-line

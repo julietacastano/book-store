@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 const Cart = () =>{
     const {cart, totalQuantity, totalPrice, emptyCart} = useContext(CartContext)
 
-    console.log(cart)
-
     if(totalQuantity === 0){
         return <p className='emptyCart'>Your cart is empty</p>
     } else{

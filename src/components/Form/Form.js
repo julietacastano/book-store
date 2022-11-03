@@ -20,7 +20,9 @@ const Form = ({onChange, purchase}) =>{
                     <input className="form-control" name="phone" placeholder="Phone" type="number"
                     onChange={onChange}></input>
                 </div>
-                <button className="btn btn-outline-success btnSubmit" type="submit">Finish Purchase</button>
+                <div  className="formItem col-lg-4">
+                    <button className="btn btn-outline-success" type="submit">Finish Purchase</button>
+                </div>
             </form>
             
         </div>
