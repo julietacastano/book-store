@@ -2,10 +2,11 @@ import './Checkout.css'
 import Form from "../Form/Form";
 import { useContext, useState } from 'react';
 import { CartContext } from '../../context/CartContext';
-import { addDoc, collection, documentId, getDocs, query, where, writeBatch } from 'firebase/firestore';
+import { addDoc, collection, documentId, getDocs, query, where, writeBatch} from 'firebase/firestore';
 import { db } from '../../services/firebase/index';
 import { NotificationContext } from '../../Notification/Notification';
 import { useNavigate } from 'react-router-dom';
+
 
 const Checkout = () =>{
     const {cart, totalPrice, emptyCart, deleteProd} = useContext(CartContext);
@@ -14,25 +15,26 @@ const Checkout = () =>{
 
     const navigate = useNavigate()
 
-    const [data, setData] = useState({
+    const [oderData, setOrderData] = useState({
             firstName:'',
             lastName:'',
             email:'',
             phone: '',
         });
     const handleInputChange =(event) =>{
-        setData({
-            ...data,
+        setOrderData({
+            ...oderData,
             [event.target.name] : event.target.value
         })
     }
-    
+
+
     const createOrder = async (event) =>{
         event.preventDefault()
         setLoading(true)
 
         try{
-            const objOrder = {...data,Items:cart,TotalPrice:totalPrice}
+            const objOrder = {...oderData,Items:cart,TotalPrice:totalPrice}
 
             const batch = writeBatch(db)
 
@@ -42,23 +44,18 @@ const Checkout = () =>{
 
             const productRef = collection(db,'products')
 
-            //Traigo los productos que estan en el cart de Firebase 
             const prodCartFromFirebase = await getDocs(query(productRef, where(documentId(),'in',ids)))
             
             const {docs} = prodCartFromFirebase
 
             docs.forEach(doc => {
-                //Veo el stock de Firebase
                 const docData = doc.data()
                 const stockbd = docData.stock
 
-                //Busco el producto que quiero en el carrito 
                 const productCart = cart.find(prod => prod.id === doc.id)
-                //Veo la cantidad del producto agregada
                 const prodCartQuantity = productCart?.quantity
 
                 if(stockbd >= prodCartQuantity){
-                    //Actualizo la base de datos
                     batch.update(doc.ref, {stock: stockbd - prodCartQuantity})
                 }else{
                     outOfStock.push({id:doc.id, ...docData})
@@ -74,9 +71,8 @@ const Checkout = () =>{
                 emptyCart()
 
                 setTimeout(() =>{
-                    navigate('/summary')
-                    
-                },3000)
+                    navigate('/')
+                },4000)
 
                 setNotification(`Your order number is ${orderAdded.id}` , 'success')
 
@@ -84,17 +80,18 @@ const Checkout = () =>{
                 const idOutOfStock = outOfStock.find(prod=>prod.id)
                 const idFound = idOutOfStock.id
                 deleteProd(idFound)
+                
                 setNotification('There are products out of stock','error')
+
             }
         }catch{
             setNotification('Error in creating order','error')
         } finally{setLoading(false)}
     }
-    
+
     if (loading === true){
         return <div> Generating Order... </div>
     }
-
 
     return (
         <div className="checkout">

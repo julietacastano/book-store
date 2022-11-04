@@ -6,6 +6,7 @@ import ItemList from '../ItemList/ItemList';
 import { getproducts } from '../../services/firestore/products';
 
 const ItemListContainer = () =>{
+
     const [products,setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -24,12 +25,12 @@ const ItemListContainer = () =>{
             setLoading(false)
         })
 
-    },[categoryId])//eslint-disable-line
+        },[categoryId])//eslint-disable-line 
 
-    if (loading){
-        return <div className="spinner-border m-5"></div>
-    }
-    
+        if (loading){
+            return <div className="spinner-border m-5"></div>
+        }
+
     return (
         <div>   
             <h5 className='tituloProd'>ALL PRODUCTS</h5>
