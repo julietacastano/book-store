@@ -1,35 +1,28 @@
 import './ItemListContainer.css'
-import {useState, useEffect, useContext} from 'react';
+import {useContext} from 'react';
 import { NotificationContext } from '../../Notification/Notification';
 import { useParams } from 'react-router-dom';
 import ItemList from '../ItemList/ItemList';
 import { getproducts } from '../../services/firestore/products';
+import {useAsync} from '../../hooks/useAsync';
 
 const ItemListContainer = () =>{
 
-    const [products,setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
-
     const {categoryId} = useParams();
-
     const {setNotification} = useContext(NotificationContext);
 
-    useEffect(() =>{
-        setLoading(true);
-        
-        getproducts(categoryId).then(prod=>{
-            setProducts(prod)
-        }).catch(()=>{
-            setNotification('error loading products', 'error')
-        }).finally(()=>{
-            setLoading(false)
-        })
 
-        },[categoryId])//eslint-disable-line 
+    const getProductsCategory = () => getproducts(categoryId)
 
-        if (loading){
-            return <div className="spinner-border m-5"></div>
-        }
+    const {data:products,loading, error} = useAsync(getProductsCategory, [categoryId])
+    
+    if (loading){
+        return <div className="spinner-border m-5"></div>
+    }
+    if(error){
+        return setNotification('error loading products', 'error')
+    }
+
 
     return (
         <div>   
