@@ -54,3 +54,21 @@
 .emptyCart{
     margin: 20px;
 }
+
+@media only screen and (max-width:768px){
+    .cart{
+        margin: 15px;
+    }
+    .cartItemList{
+        margin: 5px 10px
+    }
+    .cartItemTitle{
+        margin: 0px 10px
+    }
+    .cartItem{
+        margin: 0px 10px
+    }
+    .totals{
+        margin: 5px 20px;
+    }
+}

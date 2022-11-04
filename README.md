@@ -25,4 +25,8 @@ Each document in categories should have the following fields:
 - label
 - slung
 
+### Install and Run the Project
+
+Deploy Versel: https://book-store-ten-iota.vercel.app/ 
+
 Proyect developed by Julieta Castaño Sanchez 
