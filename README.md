@@ -23,7 +23,7 @@ Each document in products should have the following fields:
 
 Each document in categories should have the following fields:
 - label
-- slung
+- slug
 
 ### Deploy Versel
 
